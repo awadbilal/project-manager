@@ -30,7 +30,7 @@ function AddProject() {
 
   function handleProject(e){
     e.preventDefault();
-    db.collection('projects').doc(formData.title).set(formData);
+    db.collection('projects').add(formData);
     setFormData({title: '', description: '', deadline: '', tasks: []});
   }
   
@@ -39,20 +39,20 @@ function AddProject() {
       <form className="form-floating" onSubmit={handleProject}>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" type='text' name='title' value={formData.title} onChange={handleChange} required></input>
-          <label for="floatingInput">Title</label>
+          <label htmlFor="floatingInput">Title</label>
         </div>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" type='textarea' name='description' value={formData.description} onChange={handleChange} required></input>
-          <label for="floatingInput">Description</label>
+          <label htmlFor="floatingInput">Description</label>
         </div>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" type='date' name='deadline' value={formData.deadline} onChange={handleChange} required></input>
-          <label for="floatingInput">Deadline</label>
+          <label htmlFor="floatingInput">Deadline</label>
         </div>
         <div>
           <div className="form-floating mb-3">
             <input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task...'></input>
-            <label for="floatingInput">Task</label>
+            <label htmlFor="floatingInput">Task</label>
           </div>
           <button className='btn btn-primary' onClick={handleTask}>Add Task</button>
         </div>

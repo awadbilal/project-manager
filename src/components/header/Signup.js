@@ -39,25 +39,25 @@ function Signup({ registeredData, loggedInUser }){
       <form className="form-floating" onSubmit={handleSubmit}>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" type='text' name='username' placeholder='Username...' value={formData.username} onChange={handleChange} required></input>
-          <label for="floatingInput">Username</label>
+          <label htmlFor="floatingInput">Username</label>
         </div>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" aria-describedby="emailHelp" type='email' name='email' placeholder='Email...' value={formData.email} onChange={handleChange} required></input>
-          <label for="floatingInput">Email Address</label>
+          <label htmlFor="floatingInput">Email Address</label>
         </div>
         <div className="form-floating mb-3">
           <input className="form-control" id="floatingInput" type='password' name='password' placeholder='Password...' value={formData.password} onChange={handleChange} required></input>
-          <label for="floatingInput">Password</label>
+          <label htmlFor="floatingInput">Password</label>
         </div>
         <div className='row'>
           <div className="form-check">
-            <label className="form-check-label" for="flexRadioDefault1">
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
               <input className="form-check-input" id="flexRadioDefault1" type='radio' name='occupation' value='manager' onChange={handleChange}></input>
               Project Manager
             </label>
           </div>
           <div className="form-check">
-            <label className="form-check-label" for="flexRadioDefault2">
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
               <input className="form-check-input" id="flexRadioDefault2" type='radio' name='occupation' value='developer' onChange={handleChange}></input>
               Developer
             </label>

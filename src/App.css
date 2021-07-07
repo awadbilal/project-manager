@@ -3,3 +3,9 @@
   text-align: center;
   align-content: center;
 }
+
+.singleProjectPage {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
