@@ -7,6 +7,7 @@ import Signup from './components/header/Signup';
 import AddProject from './components/main/AddProject';
 import Projects from './components/main/Projects';
 import Login from './components/header/Login';
+import Home from './components/main/Home';
 
 function App() {
 
@@ -38,6 +39,9 @@ function App() {
           <Nav currentUser={loggedInUser} />
           <Route path="/projects">
             <Projects loggedInUser={loggedInUser} />
+          </Route>
+          <Route exact path="/">
+            <Home loggedInUser={loggedInUser} />
           </Route>
           {
             loggedInUser.occupation === 'manager' && 
