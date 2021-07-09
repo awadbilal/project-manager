@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import db from '../../firebaseConfig';
 
-function Signup({ registeredData, loggedInUser }){
+function Signup( { registeredData, loggedInUser } ){
 
   const [formData, setFormData] = useState({
     occupation: '',

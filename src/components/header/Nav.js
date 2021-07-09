@@ -1,8 +1,5 @@
 import React from 'react';
-import Signup from './Signup';
-import firebase from "firebase/app";
 import { Link } from "react-router-dom";
-import Projects from '../main/Projects';
 
 function Nav( { currentUser } ) {
   return (
@@ -18,6 +15,8 @@ function Nav( { currentUser } ) {
             <Link to='/about'>About us</Link>
           </div>
           <div>
+            {currentUser === '' && <Link to='/login'>Login</Link>}
+            <br />
             {currentUser === '' && <Link to='/sign-up'>Sign Up</Link>}
           </div>
         </div>

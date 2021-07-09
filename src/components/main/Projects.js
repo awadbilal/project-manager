@@ -25,6 +25,7 @@ function Projects( { loggedInUser } ) {
   return (
     <div className="container">
       <div className="row">
+      { isClicked !== '' && <SingleProjectPage data={isClicked} setIsClicked={setIsClicked} loggedInUser={loggedInUser} />}
         {projects.map(project => {
           return (
             <div className="col-4" key={project.title} onClick={() => setIsClicked(project)}>
@@ -34,8 +35,6 @@ function Projects( { loggedInUser } ) {
             </div>
           );
         })}
-
-        { isClicked !== '' && <SingleProjectPage data={isClicked} setIsClicked={setIsClicked} loggedInUser={loggedInUser} />}
       </div>
     </div>
   );

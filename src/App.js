@@ -6,6 +6,7 @@ import Nav from './components/header/Nav';
 import Signup from './components/header/Signup';
 import AddProject from './components/main/AddProject';
 import Projects from './components/main/Projects';
+import Login from './components/header/Login';
 
 function App() {
 
@@ -48,6 +49,12 @@ function App() {
             loggedInUser === "" &&
             <Route path="/sign-up">
               <Signup registeredData={registeredData} loggedInUser={setLoggedInUser} />
+            </Route>
+          }
+          {
+            loggedInUser === "" &&
+            <Route path="/login">
+              <Login registeredData={registeredData} loggedInUser={setLoggedInUser} />
             </Route>
           }
         </Router>
