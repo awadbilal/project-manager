@@ -24,4 +24,4 @@ function Nav( { currentUser } ) {
   )
 }
 
-export default Nav
+export default Nav;
