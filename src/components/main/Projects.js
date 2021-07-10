@@ -14,13 +14,12 @@ function Projects( { loggedInUser } ) {
       await db.collection("projects").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
         arrOfProjects.push({id: doc.id, ...doc.data()});
-        //console.log(doc.id);
         });
       });
       await setProjects(arrOfProjects);
     };
     fetchProjects();
-  }, []);
+  });
 
   return (
     <div className="container">
