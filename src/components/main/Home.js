@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Row, Col } from 'react-bootstrap';
 
 function Home( { loggedInUser } ) {
 
   const renderButtons = (
-      <div>
-        <Link to='/login'>Login now!</Link>
-        <Link to='/sign-up'>Signup now!</Link>
-      </div> )
+      <Row className="justify-content-md-center">
+        <Col xs lg="2"><Link to='/login'><Button variant="outline-primary">Login now!</Button></Link></Col>
+        <Col xs lg="2"><Link to='/sign-up'><Button variant="outline-success">Signup now!</Button></Link></Col>
+      </Row> )
 
   return (
-    <div className='container'> 
-      <h1>Welcome to the.... well you continue.</h1>
+    <Col className="justify-content-md-center">
+      <Row> <h1>Welcome to <strong>Project Handler</strong></h1> </Row>
+      <Row> <p>Small Description About the website</p> </Row>
       { loggedInUser === '' && renderButtons }
-    </div>
+    </Col>
   );
 }
 

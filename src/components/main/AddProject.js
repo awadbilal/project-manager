@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import db from '../../firebaseConfig';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col, Row } from 'react-bootstrap';
 
 function AddProject() {
 
@@ -48,14 +48,18 @@ function AddProject() {
           <Form.Label>Date</Form.Label>
           <Form.Control type="date" name='deadline' value={formData.deadline} onChange={handleChange} />
         </Form.Group>
-        <div>
-          <div className="form-floating mb-3">
-            <input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task...'></input>
-            <label htmlFor="floatingInput">Task</label>
-          </div>
-          <button className='btn btn-primary' onClick={handleTask}>Add Task</button>
-        </div>
-        <button type="submit" className='btn btn-primary'>Add Project</button>
+        <Row>
+          {/* <Col auto><Form.Label htmlFor="floatingInput">Task</Form.Label></Col> */}
+          <Col md={10}><input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task'></input></Col>
+          <Col md='auto'><button className='btn btn-primary' onClick={handleTask}>Add Task</button></Col>
+        </Row>
+        <br />
+        <Col>
+          <ul>
+            {formData.task && formData.task.map(task => <li>{task}</li>)}
+          </ul>
+        </Col>
+        <Button variant="outline-success" type="submit" size="lg" block>Add Project</Button>
       </Form>
   );
 }
