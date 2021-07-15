@@ -12,6 +12,8 @@ function AddProject() {
     task: []
   });
 
+  const [taskData, setTaskData] = useState('');
+
   function handleChange(e){
     setFormData({
       ...formData,
@@ -21,18 +23,18 @@ function AddProject() {
 
   function handleTask(e){
     e.preventDefault();
-    const inputValue = document.querySelector('.taskInput').value;
+    console.log(formData);
     setFormData({
       ...formData, 
-      task: [...formData.task, inputValue]
+      task: [...formData.task, taskData]
     });
-    document.querySelector('.taskInput').value='';
+    setTaskData('');
   }
 
   function handleProject(e){
     e.preventDefault();
     db.collection('projects').add(formData);
-    setFormData({title: '', description: '', deadline: '', tasks: []});
+    setFormData({title: '', description: '', deadline: '', task: []});
   }
   
   return (
@@ -56,7 +58,7 @@ function AddProject() {
           </Form.Group>
           <Row>
             {/* <Col auto><Form.Label htmlFor="floatingInput">Task</Form.Label></Col> */}
-            <Col md={10}><input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='Task'></input></Col>
+            <Col md={10}><input className="form-control" id="floatingInput" type='text' name='task' placeholder='Task' value={taskData} onChange={(e) => setTaskData(e.target.value)}></input></Col>
             <Col md='auto'><button className='btn btn-primary' onClick={handleTask}>Add Task</button></Col>
           </Row>
           <br />

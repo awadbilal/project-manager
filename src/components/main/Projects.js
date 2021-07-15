@@ -23,7 +23,8 @@ function Projects( { loggedInUser } ) {
     fetchProjects();
   });
 
-  return (
+  if(loggedInUser === '') return <Container><h1>Please sign-in in order to see this page</h1></Container>;
+  else return (
     <Container className='container projectsPage' fluid="md">
       <Row className="justify-content-md-center">
       { isClicked !== '' && <SingleProjectPage data={isClicked} setIsClicked={setIsClicked} loggedInUser={loggedInUser} />}

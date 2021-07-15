@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Image } from 'react-bootstrap';
 import image from '../images/login.jpg';
+import { Redirect } from 'react-router-dom';
 
 function Login( { registeredData, loggedInUser } ) {
   
@@ -33,6 +34,8 @@ function Login( { registeredData, loggedInUser } ) {
     }
 
     if(notAvailable === 0) return alert('Email is not registered!, please press sign-up instead')
+    
+    return <Redirect to='/projects' />
   }
 
   return (
