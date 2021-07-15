@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import db from '../../firebaseConfig';
+import { Form, Button, Container, Image } from 'react-bootstrap';
+import image from '../images/signup.jpg';
 
 function Signup( { registeredData, loggedInUser } ){
 
@@ -35,37 +37,46 @@ function Signup( { registeredData, loggedInUser } ){
   }
 
   return (
-    <div className='container'>
-      <form className="form-floating" onSubmit={handleSubmit}>
-        <div className="form-floating mb-3">
-          <input className="form-control" id="floatingInput" type='text' name='username' placeholder='Username...' value={formData.username} onChange={handleChange} required></input>
-          <label htmlFor="floatingInput">Username</label>
-        </div>
-        <div className="form-floating mb-3">
-          <input className="form-control" id="floatingInput" aria-describedby="emailHelp" type='email' name='email' placeholder='Email...' value={formData.email} onChange={handleChange} required></input>
-          <label htmlFor="floatingInput">Email Address</label>
-        </div>
-        <div className="form-floating mb-3">
-          <input className="form-control" id="floatingInput" type='password' name='password' placeholder='Password...' value={formData.password} onChange={handleChange} required></input>
-          <label htmlFor="floatingInput">Password</label>
-        </div>
-        <div className='row'>
-          <div className="form-check">
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
-              <input className="form-check-input" id="flexRadioDefault1" type='radio' name='occupation' value='manager' onChange={handleChange}></input>
-              Project Manager
-            </label>
+    <Container className='loginPage container'>
+      <div>
+        <Image src={image} roundedCircle className='loginImage' />
+      </div>
+      <div>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Enter Username" name='username' value={formData.username} onChange={handleChange} />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" name='email' value={formData.email} onChange={handleChange} />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Enter Password" name='password' value={formData.password} onChange={handleChange} />
+          </Form.Group>
+          <div className='col'>
+            <div className="form-check">
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                <input className="form-check-input" id="flexRadioDefault1" type='radio' name='occupation' value='manager' onChange={handleChange}></input>
+                Project Manager
+              </label>
+            </div>
+            <div className="form-check">
+              <label className="form-check-label" htmlFor="flexRadioDefault2">
+                <input className="form-check-input" id="flexRadioDefault2" type='radio' name='occupation' value='developer' onChange={handleChange}></input>
+                Developer
+              </label>
+            </div>
           </div>
-          <div className="form-check">
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
-              <input className="form-check-input" id="flexRadioDefault2" type='radio' name='occupation' value='developer' onChange={handleChange}></input>
-              Developer
-            </label>
-          </div>
-        </div>
-        <button type='submit' className='btn btn-primary'>Submit</button>
-      </form>
-    </div>
+          <br />
+          <Button variant="success" type="submit">Signup now!</Button>
+        </Form>
+      </div>
+    </Container>
   );
 }
 

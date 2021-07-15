@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import db from '../../firebaseConfig';
 import SingleProjectPage from './SingleProjectPage';
+import { Card, Container, Col, Row, Button } from 'react-bootstrap';
+// import image from '../images/edit.jpg';
 
 function Projects( { loggedInUser } ) {
 
@@ -22,20 +24,25 @@ function Projects( { loggedInUser } ) {
   });
 
   return (
-    <div className="container">
-      <div className="row">
+    <Container className='container projectsPage' fluid="md">
+      <Row className="justify-content-md-center">
       { isClicked !== '' && <SingleProjectPage data={isClicked} setIsClicked={setIsClicked} loggedInUser={loggedInUser} />}
         {projects.map(project => {
           return (
-            <div className="col-4" key={project.title} onClick={() => setIsClicked(project)}>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <h5>{project.deadline}</h5>
-            </div>
+            <Col xs={12} md={4} key={project.title} className="gridSystem">
+              <Card border="primary" style={{ width: '18rem' }}>
+                <Card.Body>
+                  <Card.Header>{project.title}</Card.Header>
+                  <Card.Text>Description: <br />{project.description} </Card.Text>
+                  <Card.Text>Deadline: {project.deadline} </Card.Text>
+                  <Button variant="outline-primary" onClick={() => setIsClicked(project)}>{loggedInUser.occupation === 'manager' ? 'Edit Project' : 'View Project'}</Button>
+                </Card.Body>
+              </Card>
+            </Col>
           );
         })}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 

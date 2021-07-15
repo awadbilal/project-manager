@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import db from '../../firebaseConfig';
+import { Row, Col, Container, Button, InputGroup, FormControl, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+// import image from '../images/edit.jpg';
 
 function SingleProjectPage( { data, setIsClicked, loggedInUser } ) {
 
@@ -35,60 +37,67 @@ function SingleProjectPage( { data, setIsClicked, loggedInUser } ) {
 
   function handleDelete(){
     db.collection('projects').doc(projectData.id).delete();
+    setIsClicked('');
   }
 
   function handleProjectChange(){
     db.collection('projects').doc(projectData.id).set(projectData);
+    setIsClicked('')
   }
-
-  console.log(projectData);
 
   if(loggedInUser.occupation === 'manager'){
     return (
-      <div className='container shown SingleProjectPage'>
-        <div>
-          <div><input type='text' name='title' value={ projectData.title } onChange={handleChange}></input></div>
-          <div><button onClick={() => setIsClicked('')}>X</button></div>
-        </div>
-        <div><input type='text' name='description' value={ projectData.description } onChange={handleChange}></input></div>
-        <div>
-          {data.task.map((task, index) => {
-            return(
-              <div>
-                <h5>{task}</h5>
-                <button onClick={() => handleTaskDelete(index)}>Delete</button>
-              </div>
-            )
-          })}
-        </div>
-        <div>
-          <div className="form-floating mb-3">
-            <input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task...'></input>
-            <label htmlFor="floatingInput">Task</label>
-          </div>
-          <button className='btn btn-primary' onClick={handleTask}>Add Task</button>
-        </div>
-        <div><input type='date' name='deadline' value={ projectData.deadline } onChange={handleChange}></input></div>
-        <div>
-          <button type='submit' onClick={handleProjectChange}>Submit Changes</button>
-          <button onClick={handleDelete}>Delete Project</button>
-        </div>
-      </div>
+      <Container>
+        <Card>
+          <Card.Header>
+            <Row className="justify-content-md-between">
+              <div><input className="form-control" type='text' name='title' value={ projectData.title } onChange={handleChange}></input></div>
+              <div><Button variant='outline-danger' onClick={() => setIsClicked('')}>X</Button></div>
+            </Row>
+          </Card.Header>
+          <Card.Body>
+            <div>Description: <br /><input className="form-control" type='textarea' name='description' value={ projectData.description } onChange={handleChange}></input></div> <br />
+            <div>
+              {data.task.map((task, index) => {
+                return(
+                  <InputGroup className="mb-3">
+                    <FormControl placeholder={task} aria-label={task} aria-describedby="basic-addon2" disabled />
+                    <Button variant="outline-secondary" id="button-addon2" onClick={() => handleTaskDelete(index)}>Delete</Button>
+                  </InputGroup>
+                )
+              })}
+            </div>
+            <Row>
+              <Col md={10}><input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task...'></input></Col>
+              <Col md='auto'><Button variant='outline-primary' onClick={handleTask}>Add Task</Button></Col>
+            </Row><br />
+            <div>Deadline: <input type='date' name='deadline' value={ projectData.deadline } onChange={handleChange}></input></div> <hr />
+            <Row className="justify-content-md-between">
+              <Button variant='outline-success' type='submit' onClick={handleProjectChange}>Submit Changes</Button>
+              <Button variant='outline-warning' onClick={handleDelete}>Delete Project</Button>
+            </Row>
+          </Card.Body>
+        </Card>
+      </Container>
     );
   }
   else {
     return (
-      <div className='container SingleProjectPage'>
-        <div>
-          <div>{ projectData.title }</div>
-          <div><button onClick={() => setIsClicked('')}>X</button></div>
-        </div>
-        <div>{ projectData.description }</div>
-          <ul>
-            {data.task.map(task => <li>{task}</li>)}
-          </ul>
-        <div>{ projectData.deadline }</div>
-      </div>
+      <Container>
+        <Card>
+          <Card.Header>
+            <Row className="justify-content-md-between">
+              <div>{ projectData.title }</div>
+              <div><Button variant='outline-danger' onClick={() => setIsClicked('')}>X</Button></div>
+            </Row>
+          </Card.Header>
+          <Card.Body>
+            <div>Description: <br />{ projectData.description }</div><hr />
+            <ListGroup>List of tasks: x{ data.task.map(task => <ListGroupItem>{task}</ListGroupItem>) }</ListGroup><hr />
+            <div>Deadline: { projectData.deadline }</div>
+          </Card.Body>
+        </Card>
+      </Container>
     );
   }
 }

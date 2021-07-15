@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Image } from 'react-bootstrap';
+import image from '../images/login.jpg';
 
 function Login( { registeredData, loggedInUser } ) {
   
-  console.log(registeredData);
-
   const [formData, setFormData] = useState({
     email: '',
     password: null
@@ -37,23 +36,28 @@ function Login( { registeredData, loggedInUser } ) {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" name='email' value={formData.email} onChange={handleChange} />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <Container className='loginPage container'>
+      <div>
+        <Image src={image} roundedCircle className='loginImage' />
+      </div>
+      <div>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" name='email' value={formData.email} onChange={handleChange} />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" name='password' value={formData.password} onChange={handleChange} />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
-    </Form>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" name='password' value={formData.password} onChange={handleChange} />
+          </Form.Group>
+          <Button variant="primary" type="submit">Login</Button>
+        </Form>
+      </div>
+    </Container>
   );
 }
 

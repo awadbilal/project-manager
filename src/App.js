@@ -9,6 +9,7 @@ import AddProject from './components/main/AddProject';
 import Projects from './components/main/Projects';
 import Login from './components/header/Login';
 import Home from './components/main/Home';
+import AboutUs from './components/main/AboutUs';
 
 function App() {
 
@@ -37,13 +38,15 @@ function App() {
     <div className="App">
       <div> 
         <Router>
-          <NavigationBar currentUser={loggedInUser} />
-          <div className='container'>
+          <NavigationBar currentUser={loggedInUser} setCurrentUser={setLoggedInUser} />
             <Route path="/projects">
               <Projects loggedInUser={loggedInUser} />
             </Route>
             <Route exact path="/">
               <Home loggedInUser={loggedInUser} />
+            </Route>
+            <Route exact path="/about">
+              <AboutUs />
             </Route>
             {
               loggedInUser.occupation === 'manager' && 
@@ -63,10 +66,8 @@ function App() {
                 <Login registeredData={registeredData} loggedInUser={setLoggedInUser} />
               </Route>
             }
-          </div>
         </Router>
       </div>
-      {/* <AddProject /> */}
     </div>
   );
 }
