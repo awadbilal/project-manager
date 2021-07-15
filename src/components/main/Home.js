@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Container } from 'react-bootstrap';
 
 function Home( { loggedInUser } ) {
 
@@ -11,11 +11,13 @@ function Home( { loggedInUser } ) {
       </Row> )
 
   return (
-    <Col className="justify-content-md-center">
-      <Row> <h1>Welcome to <strong>Project Handler</strong></h1> </Row>
-      <Row> <p>Small Description About the website</p> </Row>
-      { loggedInUser === '' && renderButtons }
-    </Col>
+    <Container>
+      <Col className="justify-content-md-center">
+        <Row> <h1>Welcome to <strong>Project Handler</strong></h1> </Row>
+        <Row> <p>Small Description About the website</p> </Row>
+        { loggedInUser === '' && renderButtons }
+      </Col>
+    </Container>
   );
 }
 

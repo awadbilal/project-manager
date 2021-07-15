@@ -51,12 +51,12 @@ function AddProject() {
             <Form.Control as="textarea" name='description' value={formData.description} onChange={handleChange} rows={3} required />
           </Form.Group>
           <Form.Group controlId="formBasic">
-            <Form.Label>Date</Form.Label>
+            <Form.Label>Deadline</Form.Label>
             <Form.Control type="date" name='deadline' value={formData.deadline} onChange={handleChange} required />
           </Form.Group>
           <Row>
             {/* <Col auto><Form.Label htmlFor="floatingInput">Task</Form.Label></Col> */}
-            <Col md={10}><input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='task'></input></Col>
+            <Col md={10}><input className="form-control taskInput" id="floatingInput" type='text' name='task' placeholder='Task'></input></Col>
             <Col md='auto'><button className='btn btn-primary' onClick={handleTask}>Add Task</button></Col>
           </Row>
           <br />
