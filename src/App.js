@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import db from './firebaseConfig';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import NavigationBar from './components/header/NavigationBar';
 import Signup from './components/header/Signup';
 import AddProject from './components/main/AddProject';
@@ -54,18 +54,14 @@ function App() {
                 <AddProject />
               </Route>
             }
-            {
-              loggedInUser === "" &&
-              <Route path="/sign-up">
-                <Signup registeredData={registeredData} loggedInUser={setLoggedInUser} />
-              </Route>
-            }
-            {
-              loggedInUser === "" &&
-              <Route path="/login">
-                <Login registeredData={registeredData} loggedInUser={setLoggedInUser} />
-              </Route>
-            }
+
+            <Route path="/sign-up">
+              {loggedInUser === "" ?   <Signup registeredData={registeredData} loggedInUser={setLoggedInUser} /> : <Redirect to='/projects' /> }
+            </Route>
+
+            <Route path="/login">
+              {loggedInUser === "" ?  <Login registeredData={registeredData} loggedInUser={setLoggedInUser} /> : <Redirect to='/projects' />  }
+            </Route>
         </Router>
       </div>
     </div>
