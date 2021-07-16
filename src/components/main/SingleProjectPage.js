@@ -93,7 +93,7 @@ function SingleProjectPage( { data, setIsClicked, loggedInUser } ) {
           </Card.Header>
           <Card.Body>
             <div>Description: <br />{ projectData.description }</div><hr />
-            <ListGroup>List of tasks: x{ data.task.map(task => <ListGroupItem>{task}</ListGroupItem>) }</ListGroup><hr />
+            <ListGroup>List of tasks: { data.task.map(task => <ListGroupItem>{task}</ListGroupItem>) }</ListGroup><hr />
             <div>Deadline: { projectData.deadline }</div>
           </Card.Body>
         </Card>

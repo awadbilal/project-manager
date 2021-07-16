@@ -42,8 +42,8 @@ function Pages() {
       <Route exact path="/"><Home loggedInUser={loggedInUser} /></Route>
       <Route exact path="/about" component={AboutUs} />
       { loggedInUser.occupation === 'manager' && <Route path="/add-project" component={AddProject} /> }
-      <Route path="/sign-up">{ loggedInUser === "" ? <Signup registeredData={registeredData} setLoggedInUser={setLoggedInUser} /> : <Redirect to='/projects' /> }</Route>
-      <Route path="/login">{ loggedInUser === "" ? <Login registeredData={registeredData} setLoggedInUser={setLoggedInUser} /> : <Redirect to='/projects' /> }</Route>
+      <Route path="/sign-up">{ loggedInUser === "" ? <Signup registeredData={registeredData} setLoggedInUser={setLoggedInUser} /> : <Redirect to='/' /> }</Route>
+      <Route path="/login">{ loggedInUser === "" ? <Login registeredData={registeredData} setLoggedInUser={setLoggedInUser} /> : <Redirect to='/' /> }</Route>
       { loggedInUser && <Route path={'/' + loggedInUser.username}><EditProfile registeredData={registeredData} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} /></Route> }
     </>
   );

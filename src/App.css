@@ -39,3 +39,12 @@
   flex-wrap: wrap;
   max-width: 100%;
 }
+
+.homeButtons {
+  font-size: 1.2rem !important;
+  border-radius: 25%;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  padding: 15px 32px;
+}

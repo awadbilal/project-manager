@@ -26,11 +26,11 @@ function EditProfile( { registeredData, loggedInUser, setLoggedInUser} ) {
 
     if (formData.occupation === '') return alert('Please select an occupation');
 
-    if(formData.occupation === 'manager') db.collection('projectManagers').doc(currentUser.id).update(formData);
+    if(currentUser.occupation === 'manager') db.collection('projectManagers').doc(currentUser.username).update({formData});
     else db.collection('developer').doc(currentUser.id).update(formData);
     setLoggedInUser(formData);
 
-    setFormData({occupation: '', username: '', email: '', password: ''});
+    setFormData({occupation: currentUser.occupation, username: '', email: '', password: ''});
   }
 
   return (
@@ -59,21 +59,7 @@ function EditProfile( { registeredData, loggedInUser, setLoggedInUser} ) {
               <Form.Control type="password" placeholder="Password" name='password' value={formData.password} onChange={handleChange} />
             </Form.Group>
 
-            <div className='col'>
-              <div className="form-check">
-                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                  <input className="form-check-input" id="flexRadioDefault1" type='radio' name='occupation' value='manager' onChange={handleChange}></input>
-                  Project Manager
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label" htmlFor="flexRadioDefault2">
-                  <input className="form-check-input" id="flexRadioDefault2" type='radio' name='occupation' value='developer' onChange={handleChange}></input>
-                  Developer
-                </label>
-              </div>
-            </div>
-            <br />
+            <hr />
             <Button variant="outline-primary" type="submit">Save Changes</Button>
           </Form>
         </div>
