@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Image } from 'react-bootstrap';
 import image from '../images/login.jpg';
 
-function Login( { registeredData, loggedInUser } ) {
+function Login( { registeredData, setLoggedInUser } ) {
   
   const [formData, setFormData] = useState({
     email: '',
@@ -24,7 +24,7 @@ function Login( { registeredData, loggedInUser } ) {
     for(let i = 0; i < registeredData.length; i++){
       if(formData.email === registeredData[i].email){
         if(formData.password === registeredData[i].password){
-          loggedInUser(registeredData[i]);
+          setLoggedInUser(registeredData[i]);
           setFormData({email: '', password: ''});
         }
         else return alert('Password is incorrect, please try again');

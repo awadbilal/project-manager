@@ -3,7 +3,7 @@ import db from '../../firebaseConfig';
 import { Form, Button, Container, Image } from 'react-bootstrap';
 import image from '../images/signup.jpg';
 
-function Signup( { registeredData, loggedInUser } ){
+function Signup( { registeredData, setLoggedInUser } ){
 
   const [formData, setFormData] = useState({
     occupation: '',
@@ -29,9 +29,9 @@ function Signup( { registeredData, loggedInUser } ){
 
     if (formData.occupation === '') return alert('Please choose an occupation');
 
-    if(formData.occupation === 'manager') db.collection('projectManagers').doc(formData.username).set(formData);
-    else db.collection('developer').doc(formData.username).set(formData);
-    loggedInUser(formData);
+    if(formData.occupation === 'manager') db.collection('projectManagers').add(formData);
+    else db.collection('developer').add(formData);
+    setLoggedInUser(formData);
 
     setFormData({occupation: '', username: '', email: '', password: ''});
   }

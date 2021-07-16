@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 function NavigationBar( { currentUser, setCurrentUser } ) {
-  console.log(currentUser);
 
   function handleLogOut(e){
     e.preventDefault();
@@ -29,7 +28,7 @@ function NavigationBar( { currentUser, setCurrentUser } ) {
             currentUser !== '' && 
             (
               <NavDropdown title={currentUser.username} id="basic-nav-dropdown" >
-                <NavDropdown.Item onClick={() => console.log('Hey')}>Edit Profile</NavDropdown.Item>
+                <NavDropdown.Item><Link to={currentUser.username}>Edit Profile</Link></NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogOut}>Logout</NavDropdown.Item>
               </NavDropdown>
